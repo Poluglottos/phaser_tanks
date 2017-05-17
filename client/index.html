@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <script src="//cdn.jsdelivr.net/phaser/2.6.2/phaser.min.js"></script>
+    <script src="//cdn.jsdelivr.net/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/play.js"></script>
+    <script src="js/gyro.js"></script>
+    <script src="js/preload.js"></script>
+    <script src='/js/player.js'></script>
+    <script src='js/spectate.js'></script>
+    <meta charset="UTF-8" />
+    
+  </head>
+  <body>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <style>
+      body {
+        background-image: url("assets/old_map.png");
+        }
+        #wrapper {
+          position: absolute;
+          z-index: 1;
+          margin: auto;
+          width:100%;
+        }
+      #playerName {
+        border: 1px solid #ccc;
+        margin:  -125 10%;
+        padding: 10px 15px;
+        box-sizing: border-box;
+        margin-top:300px;
+        outline: none;
+        width: 250px;
+      }
+    </style>
+    
+    <div >
+      <script type="text/javascript">
+      winW = document.body.offsetWidth;            
+      winH = document.body.offsetHeight;  
+        var socket = io();
+
+        
+        var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example');
+      
+        game.state.add("preload", bootState);
+        game.state.add("menu", menuState);
+        game.state.add("play", playState);
+        game.state.add('spectate', spectateState)
+        //game.state.add("restart", restartState);
+        
+        game.state.start('preload');
+
+      </script>
+
+    </div>
+    <div id="notifications">
+      
+    </div>
+    <div id="wrapper" align="center">
+      <input align="center" type="text" class="inputText" id="playerName" name="username" placeholder="Username">
+      </div>
+  </body>
+</html>
